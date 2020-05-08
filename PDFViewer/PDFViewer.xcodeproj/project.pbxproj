@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		845F906A2464DDFD00FE9016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845F90692464DDFD00FE9016 /* Assets.xcassets */; };
+		845F90752465A38D00FE9016 /* close.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 845F90732465A38D00FE9016 /* close.pdf */; };
+		845F90782465A3A200FE9016 /* save.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 845F90772465A3A200FE9016 /* save.pdf */; };
 		84B8E778244DFFDE00A9A6FC /* PDFViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8E776244DFFDE00A9A6FC /* PDFViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8E787244E415B00A9A6FC /* PDFController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8E786244E415B00A9A6FC /* PDFController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		845F90692464DDFD00FE9016 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		845F90732465A38D00FE9016 /* close.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = close.pdf; sourceTree = "<group>"; };
+		845F90772465A3A200FE9016 /* save.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = save.pdf; sourceTree = "<group>"; };
 		84B8E773244DFFDE00A9A6FC /* PDFViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PDFViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B8E776244DFFDE00A9A6FC /* PDFViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFViewer.h; sourceTree = "<group>"; };
 		84B8E777244DFFDE00A9A6FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,7 +55,8 @@
 				84B8E776244DFFDE00A9A6FC /* PDFViewer.h */,
 				84B8E777244DFFDE00A9A6FC /* Info.plist */,
 				84B8E786244E415B00A9A6FC /* PDFController.swift */,
-				845F90692464DDFD00FE9016 /* Assets.xcassets */,
+				845F90732465A38D00FE9016 /* close.pdf */,
+				845F90772465A3A200FE9016 /* save.pdf */,
 			);
 			path = PDFViewer;
 			sourceTree = "<group>";
@@ -128,7 +131,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				845F906A2464DDFD00FE9016 /* Assets.xcassets in Resources */,
+				845F90752465A38D00FE9016 /* close.pdf in Resources */,
+				845F90782465A3A200FE9016 /* save.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
