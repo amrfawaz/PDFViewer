@@ -16,7 +16,7 @@ public class PDFController: UIViewController {
 
     open var closeButtonTintColor: UIColor? = .black
     
-    init() {
+    public init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -78,12 +78,12 @@ public class PDFController: UIViewController {
         closeButton.target = self
         closeButton.action = #selector(dismissView)
         closeButton.tintColor = closeButtonTintColor
-        closeButton.image = #imageLiteral(resourceName: "close")
+        closeButton.image = UIImage(named: "close.pdf")
         navigationItem.leftBarButtonItem = closeButton
     }
     
     func addSaveButton() {
-        let saveButton = UIBarButtonItem(image: #imageLiteral(resourceName: "save"), style: .done, target: self, action: #selector(saveFile))
+        let saveButton = UIBarButtonItem(image: UIImage(named: "save.pdf"), style: .done, target: self, action: #selector(saveFile))
         saveButton.tintColor = .black
         navigationItem.rightBarButtonItem = saveButton
     }
