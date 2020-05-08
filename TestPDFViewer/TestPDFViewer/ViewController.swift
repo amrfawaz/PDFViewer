@@ -9,12 +9,29 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
-
-
+    
+    @IBAction func openPDF(_ sender: Any) {
+        let pdfViewer = PDFController()
+        pdfViewer.openPDF(path: "sample")
+        let navigation = UINavigationController(rootViewController: pdfViewer)
+        self.present(navigation, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func downloadPDF(_ sender: Any) {
+        let pdfViewer = PDFController()
+        pdfViewer.downloadPDF(url: "http://www.africau.edu/images/default/sample.pdf")
+        
+        let navigation = UINavigationController(rootViewController: pdfViewer)
+        self.present(navigation, animated: true, completion: nil)
+        
+    }
+    
+    
 }
 
