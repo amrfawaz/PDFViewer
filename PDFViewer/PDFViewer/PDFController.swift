@@ -12,13 +12,11 @@ import PDFKit
 
 public class PDFController: UIViewController {
 
-    private var url: URL?
     private var pdfView = PDFView()
 
-    open var closeButtonTintColor: UIColor? = .white
+    open var closeButtonTintColor: UIColor? = .black
     
-    init(pdfUrl: String) {
-        self.url = URL(string: pdfUrl)
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,21 +26,51 @@ public class PDFController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        
         addSaveButton()
         addCloseButton()
         navigationController?.navigationBar.isTranslucent = false
         pdfView.frame = view.frame
+        pdfView.displayMode = .singlePageContinuous
+        pdfView.autoScales = true
+        pdfView.displayDirection = .vertical
+
     }
     
     
-    open func openPDF() {
-        if let document = PDFDocument(url: self.url!) {
-            pdfView.document = document
-            view.addSubview(pdfView)
+    open func openPDF(path: String) {
+        self.title = path
+        if let url = Bundle.main.url(forResource: path, withExtension: "pdf") {
+            DispatchQueue.main.async {
+                if let document = PDFDocument(url: url) {
+                    self.setPdfViewDocument(document: document)
+                }
+            }
         }
     }
     
     
+    open func downloadPDF(url: String) {
+        let url = URL(string: url)!
+        let task = URLSession.shared.downloadTask(with: url) { localURL, urlResponse, error in
+            if let localURL = localURL {
+                DispatchQueue.main.async {
+                    self.title = localURL.lastPathComponent
+                }
+                if let document = PDFDocument(url: localURL) {
+                    self.setPdfViewDocument(document: document)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    private func setPdfViewDocument(document: PDFDocument) {
+        DispatchQueue.main.async {
+            self.pdfView.document = document
+            self.view.addSubview(self.pdfView)
+        }
+    }
     
     func addCloseButton() {
         let closeButton = UIBarButtonItem()
@@ -55,28 +83,32 @@ public class PDFController: UIViewController {
     }
     
     func addSaveButton() {
-        let saveButton = UIBarButtonItem(image: #imageLiteral(resourceName: "download"), style: .done, target: self, action: #selector(saveFile))
-        saveButton.tintColor = .white
+        let saveButton = UIBarButtonItem(image: #imageLiteral(resourceName: "save"), style: .done, target: self, action: #selector(saveFile))
+        saveButton.tintColor = .black
         navigationItem.rightBarButtonItem = saveButton
     }
     
-    @objc func saveFile() {
+    @objc func saveFile(url: String) {
         do {
-            let fileDate = try Data(contentsOf: self.url!)
-            do {
-                try fileDate.write(to: self.url!)
-                let activityViewController = UIActivityViewController(activityItems: [self.url!], applicationActivities: nil)
-                present(activityViewController, animated: true, completion: nil)
-            } catch {
-                print(error.localizedDescription)
+            if let path = Bundle.main.url(forResource: url, withExtension: "pdf") {
+                let fileDate = try Data(contentsOf: path)
+                do {
+                    try fileDate.write(to: path)
+                    let activityViewController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
+                    present(activityViewController, animated: true, completion: nil)
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
         } catch {
             print(error.localizedDescription)
         }
     }
     
+    
+    
     @objc func dismissView() {
         dismiss(animated: true, completion: nil)
     }
-
+    
 }
