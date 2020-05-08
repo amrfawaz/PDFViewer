@@ -78,12 +78,12 @@ public class PDFController: UIViewController {
         closeButton.target = self
         closeButton.action = #selector(dismissView)
         closeButton.tintColor = closeButtonTintColor
-        closeButton.image = UIImage(named: "close.pdf")
+        closeButton.title = "Close"
         navigationItem.leftBarButtonItem = closeButton
     }
     
     func addSaveButton() {
-        let saveButton = UIBarButtonItem(image: UIImage(named: "save.pdf"), style: .done, target: self, action: #selector(saveFile))
+        let saveButton = UIBarButtonItem(title: "Share", style: .done, target: self, action: #selector(saveFile))
         saveButton.tintColor = .black
         navigationItem.rightBarButtonItem = saveButton
     }
